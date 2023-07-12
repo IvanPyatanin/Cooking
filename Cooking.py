@@ -28,16 +28,16 @@ def get_shop_list_dishes(dishes, person_count):
 
 with open('1.txt', encoding='utf-8') as f1, open('2.txt', encoding='utf-8') as f2, open('3.txt', encoding='utf-8') as f3, open('5.txt', 'w') as f5:
     txt_ = [f1.readlines(), f2.readlines(), f3.readlines()]
-    x1 = {len(txt_[0]): txt_[0]}
-    x2 = {len(txt_[1]): txt_[1]}
-    x3 = {len(txt_[2]): txt_[2]}
-    x4 = x1 | x2 | x3
-    f5.write(f"2.txt \n{len(txt_[min(x4)])}\n{x4[len(txt_[min(x4)])]}\n1.txt\n{len(txt_[0])}\n{x4[len(txt_[0])]}\n3.txt\n{len(txt_[2])}\n{x4[len(txt_[2])]}")
+    a = {'1.txt': [len(txt_[0]), txt_[0]]}
+    b = {'2.txt': [len(txt_[1]), txt_[1]]}
+    c = {'3.txt': [len(txt_[2]), txt_[2]]}
+    d = a | b | c
+    d_dict = {}
+    sorted_key = sorted(d, key=d.get)
 
+    for w in sorted_key:
+        d_dict[w] = d[w]
 
-
-
-
-
-
-
+    for k, v in d_dict.items():
+        x = f"{k}\n {v[0]}\n {''.join(v[1])}"
+        f5.write(x)
